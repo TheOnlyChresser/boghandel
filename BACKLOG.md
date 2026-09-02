@@ -1,9 +1,11 @@
 # Product Backlog – Boghandel
 
-Userstories fra opgavebeskrivelsen (side 5–6). Userstory 1–2 står på en tidligere side og er ikke medtaget her.
+Userstories fra opgavebeskrivelsen (afsnittet "Brugerhistorier", side 4–6).
 
 | # | Userstory | Status |
 |---|-----------|--------|
+| 1 | Større vindue, så alle søjler kan ses | Todo |
+| 2 | Ekstra kolonne "id" i bog-tabellen | Todo |
 | 3 | Vis alle oplysninger om den valgte bog | Todo |
 | 4 | Årstal vises som helt tal | Todo |
 | 5 | Vis bogens forside ved valg | Todo |
@@ -14,6 +16,14 @@ Userstories fra opgavebeskrivelsen (side 5–6). Userstory 1–2 står på en ti
 | 10 | Gem køb til regnskab | Todo |
 
 ---
+
+## 1. Større vindue, så alle søjler kan ses
+
+Når brugeren ser på skærmen, vil brugeren gerne kunne se alle søjlerne i bog-tabellen fra start (`Book_gui.py`). Dvs. gør vinduet større, f.eks. 1200x600.
+
+## 2. Ekstra kolonne "id" i bog-tabellen
+
+Brugeren vil gerne have en søjle mere i bog-tabellen, dvs. en kolonne 5 med "id", til højre for de fire andre kolonner.
 
 ## 3. Vis alle oplysninger om den valgte bog
 

@@ -4,6 +4,8 @@ Userstories fra opgavebeskrivelsen (side 5–6). Userstory 1–2 står på en ti
 
 | # | Userstory | Status |
 |---|-----------|--------|
+| 1 | Updater root.geomerty til 1200x600 | Todo |
+| 2 | tilføj en 5'de kollone, id, til tabellen | Todo |
 | 3 | Vis alle oplysninger om den valgte bog | Todo |
 | 4 | Årstal vises som helt tal | Todo |
 | 5 | Vis bogens forside ved valg | Todo |

@@ -138,7 +138,7 @@ class Book_gui(ttk.Frame):
         self.pack()
 
 root = tk.Tk()
-root.geometry("800x600")
+root.geometry("1200x600")
 
 app = Book_gui(root)
 app.master.title('Bøger')

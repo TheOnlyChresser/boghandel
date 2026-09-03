@@ -117,7 +117,7 @@ class Book_gui(ttk.Frame):
         #Læg mærke til at kolonne 5 ikke bliver vist.
         #Vi kan stadig finde id på den bog der er valgt,
         #men brugeren kan ikke se id.
-        self.db_view["displaycolumns"]=("column1", "column2", "column3", "column4")
+        self.db_view["displaycolumns"]=("column1", "column2", "column3", "column4", "column5")
         ysb = ttk.Scrollbar(data_frame, command=self.db_view.yview, orient=tk.VERTICAL)
         self.db_view.configure(yscrollcommand=ysb.set)
         self.db_view.pack(side = tk.TOP, fill=tk.BOTH)

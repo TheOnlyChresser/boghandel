@@ -5,9 +5,9 @@
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
 | 1 | Updater root.geomerty til 1200x600 | 5 min | the GUI ran with the new geomerty | Niklas | 5 min | Done |
-| 2 | tilføj en 5'de kollone, id, til tabellen | 15 min | kørte programmet og id-kolonen var der | Niklas | 2 min | in progress |
+| 2 | tilføj en 5'de kollone, id, til tabellen | 15 min | kørte programmet og id-kolonen var der | Niklas | 2 min | Done |
 | 3 | Vis alle oplysninger om den valgte bog | | | | | Todo |
-| 4 | Årstal vises som helt tal | 15 min | kørte programmet og årstalene stog uden decimaltal | Niklas | 10 min | Todo |
+| 4 | Årstal vises som helt tal | 15 min | kørte programmet og årstalene stog uden decimaltal | Niklas | 10 min | Done |
 
 ## Sprint uge 2
 

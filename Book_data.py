@@ -1,4 +1,9 @@
 import csv
+import math
+
+def Truncate(number, decimal):
+    faktor = 10 ** decimal
+    return math.trunc(number * faktor) / faktor
 
 class Book:
 
@@ -16,7 +21,7 @@ class Book:
         for i in range(0,len(self.ratings)):
             r += (i+1)*self.ratings[i]
 
-        return r/sum(self.ratings)
+        return Truncate(r/sum(self.ratings), 2)
 
     def give_rating(self, r):
         if 0 <= r <= 5:

@@ -48,7 +48,7 @@ class Books_data:
                 b.ratings[2] = int(book["ratings_3"])
                 b.ratings[3] = int(book["ratings_4"])
                 b.ratings[4] = int(book["ratings_5"])
-                b.aarstal = book["original_publication_year"]
+                b.aarstal = int(float(book["original_publication_year"]))
                 b.forfatter = book["authors"]
                 b.id = int(book['book_id'])
             except:

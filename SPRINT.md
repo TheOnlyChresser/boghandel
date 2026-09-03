@@ -9,6 +9,12 @@
 | 3 | Vis alle oplysninger om den valgte bog | | | | | Todo |
 | 4 | Årstal vises som helt tal | 15 min | kørte programmet og årstalene stog uden decimaltal | Niklas | 10 min | Done |
 
+### EXTRA
+
+| # | Userstory | TimeEstimate | Test | Owner | Time | Status |
+|---|-----------|--------------|------|-------|------|--------|
+| 1 | Afrund Rating kollonen til 2 decimaler | 10 min | @ | Niklas | @ | in progress |
+
 ## Sprint uge 2
 
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |

@@ -13,7 +13,7 @@
 
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
-| 1 | Afrund Rating kollonen til 2 decimaler | 10 min | kørte programmet og rating kollonen har 2 decimaler | Niklas | 15 min | in progress |
+| 1 | Afrund Rating kollonen til 2 decimaler | 10 min | kørte programmet og rating kollonen har 2 decimaler | Niklas | 15 min | Done |
 
 ## Sprint uge 2
 

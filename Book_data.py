@@ -14,7 +14,7 @@ class Book:
         #[1 stjerne, 2 stjerner, 3 stjerner...]
         self.ratings = [0,0,0,0,0]
         self.id = -1
-
+        self.antal = 0
     def get_rating(self):
         r = 0
 
@@ -56,6 +56,7 @@ class Books_data:
                 b.aarstal = int(float(book["original_publication_year"]))
                 b.forfatter = book["authors"]
                 b.id = int(book['book_id'])
+                b.antal = int(book["books_count"])
             except:
                 print(book)
 
@@ -99,3 +100,4 @@ class Books_data:
                 book.forfatter = b.forfatter
                 book.titel = b.titel
                 book.aarstal = b.aarstal
+                book.antal = b.antal

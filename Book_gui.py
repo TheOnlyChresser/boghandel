@@ -17,7 +17,7 @@ class Book_gui(ttk.Frame):
 
         self.db_view.delete(*self.db_view.get_children())
         for b in l:
-            self.db_view.insert("", tk.END, values=(b.titel, b.forfatter, b.aarstal, b.get_rating(), b.id))
+            self.db_view.insert("", tk.END, values=(b.titel, b.forfatter, b.aarstal, b.get_rating(), b.id, b.antal))
 
     def on_book_selected(self, event):
         curItem = self.db_view.item(self.db_view.focus())['values']
@@ -29,6 +29,7 @@ class Book_gui(ttk.Frame):
             self.lbl_aarstal.configure(text="Årstal: {}".format(b.aarstal))
             self.lbl_id.configure(text="Id: {}".format(b.id))
             self.lbl_rating.configure(text="Rating: {}".format(b.get_rating()))
+            self.lbl_antal.configure(text="Antal: {}".format(b.antal))
             
             self.can.delete("all")
             print(b.ratings[0]/sum(b.ratings))
@@ -44,7 +45,7 @@ class Book_gui(ttk.Frame):
             b.titel = curItem[0]
             b.forfatter = curItem[1]
             b.aarstal = curItem[2]
-
+            b.antal = curItem[5]
             b.id = int(curItem[4])
 
             self.data.slet_bog(b)
@@ -57,6 +58,7 @@ class Book_gui(ttk.Frame):
             b.forfatter = en_forfatter.get()
             b.aarstal = en_aarstal.get()
             b.id = int(en_id.get())
+            b.antal = int(en_antal.get())
             self.data.update_book(b)
             b.give_rating(sc_rating.scale.get())
             self.opdater_tabel()
@@ -102,6 +104,13 @@ class Book_gui(ttk.Frame):
             en_id.delete(0, tk.END)
             en_id.insert(0, b.id)
 
+            lbl_antal = ttk.Label(dlg, text='Antal')
+            lbl_antal.grid(column =0, row = 5)
+            en_antal = ttk.Entry(dlg)
+            en_antal.grid(column=1, row=5)
+            en_antal.delete(0, tk.END)
+            en_antal.insert(0, b.antal)
+
             but_annuller = ttk.Button(dlg, text="Annuller", command=close)
             but_annuller.grid(column=1,row=4)
             but_ok = ttk.Button(dlg, text="Gem ændringer", command=change_book)
@@ -121,17 +130,18 @@ class Book_gui(ttk.Frame):
         self.del_button = ttk.Button(knap_frame, text="Slet bog", command=self.slet_bog)
         self.del_button.pack(side=tk.TOP)
 
-        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5"), show='headings')
+        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5", "column6"), show='headings')
         self.db_view.bind("<ButtonRelease-1>", self.on_book_selected)
         self.db_view.heading("#1", text="Titel")
         self.db_view.heading("#2", text="Forfatter")
         self.db_view.heading("#3", text="Årstal")
         self.db_view.heading("#4", text="Rating")
         self.db_view.heading("#5", text="id")
+        self.db_view.heading("#6", text="Antal")
         #Læg mærke til at kolonne 5 ikke bliver vist.
         #Vi kan stadig finde id på den bog der er valgt,
         #men brugeren kan ikke se id.
-        self.db_view["displaycolumns"]=("column1", "column2", "column3", "column4", "column5")
+        self.db_view["displaycolumns"]=("column1", "column2", "column3", "column4", "column5", "column6")
         ysb = ttk.Scrollbar(data_frame, command=self.db_view.yview, orient=tk.VERTICAL)
         self.db_view.configure(yscrollcommand=ysb.set)
         self.db_view.pack(side = tk.TOP, fill=tk.BOTH)
@@ -145,11 +155,13 @@ class Book_gui(ttk.Frame):
         self.lbl_aarstal = ttk.Label(top_frame, text='Årstal')
         self.lbl_id = ttk.Label(top_frame, text='Id')
         self.lbl_rating = ttk.Label(top_frame, text='Rating')
+        self.lbl_antal = ttk.Label(top_frame, text='Antal')
         self.lbl_titel.grid(column=0, row=0)
         self.lbl_forfatter.grid(column=0, row=1)
         self.lbl_aarstal.grid(column=0, row=2)
         self.lbl_id.grid(column=0, row=3)
         self.lbl_rating.grid(column=0, row=4)
+        self.lbl_antal.grid(column=0, row=5)
 
         top_frame.pack(side=tk.TOP)
         data_frame.pack(side = tk.TOP)

@@ -1,6 +1,9 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import messagebox
+
 from Book_data import Book, Books_data
+
 
 class Book_gui(ttk.Frame):
     def __init__(self, master=None):
@@ -17,10 +20,14 @@ class Book_gui(ttk.Frame):
 
         self.db_view.delete(*self.db_view.get_children())
         for b in l:
-            self.db_view.insert("", tk.END, values=(b.titel, b.forfatter, b.aarstal, b.get_rating(), b.id, b.antal))
+            self.db_view.insert(
+                "",
+                tk.END,
+                values=(b.titel, b.forfatter, b.aarstal, b.get_rating(), b.id, b.antal),
+            )
 
     def on_book_selected(self, event):
-        curItem = self.db_view.item(self.db_view.focus())['values']
+        curItem = self.db_view.item(self.db_view.focus())["values"]
         if len(curItem) > 0:
             b = self.data.get_book(curItem[4])
 
@@ -31,16 +38,21 @@ class Book_gui(ttk.Frame):
             self.lbl_rating.configure(text="Rating: {}".format(b.get_rating()))
             self.lbl_antal.configure(text="Antal: {}".format(b.antal))
             
-            self.can.delete("all")
-            print(b.ratings[0]/sum(b.ratings))
 
-            self.can.create_rectangle(10,190,30,190-200*(b.ratings[0]/sum(b.ratings)))
-            #laver en random ass box
+            self.can.delete("all")
+            print(b.ratings[0] / sum(b.ratings))
+
+            self.can.create_rectangle(
+                10, 190, 30, 190 - 200 * (b.ratings[0] / sum(b.ratings))
+            )
+            # laver en random ass box
 
     def slet_bog(self):
-        curItem = self.db_view.item(self.db_view.focus())['values']
+        curItem = self.db_view.item(self.db_view.focus())["values"]
 
-        if len(curItem) > 0:
+        confirmed = messagebox.askyesno("Are you sure", "Are you sure")
+
+        if len(curItem) > 0 and confirmed == True:
             b = Book()
             b.titel = curItem[0]
             b.forfatter = curItem[1]
@@ -50,7 +62,6 @@ class Book_gui(ttk.Frame):
 
             self.data.slet_bog(b)
             self.opdater_tabel()
-
 
     def rediger_bog(self):
         def change_book():
@@ -69,36 +80,36 @@ class Book_gui(ttk.Frame):
             dlg.destroy()
             dlg.update()
 
-        curItem = self.db_view.item(self.db_view.focus())['values']
+        curItem = self.db_view.item(self.db_view.focus())["values"]
 
         if len(curItem) > 0:
             b = self.data.get_book(curItem[4])
 
             dlg = tk.Toplevel()
 
-            lbl_titel = ttk.Label(dlg, text='Titel')
-            lbl_titel.grid(column =0, row = 0)
+            lbl_titel = ttk.Label(dlg, text="Titel")
+            lbl_titel.grid(column=0, row=0)
             en_titel = ttk.Entry(dlg)
             en_titel.grid(column=1, row=0)
             en_titel.delete(0, tk.END)
             en_titel.insert(0, b.titel)
 
-            lbl_forfatter = ttk.Label(dlg, text='Forfatter')
-            lbl_forfatter.grid(column =0, row = 1)
+            lbl_forfatter = ttk.Label(dlg, text="Forfatter")
+            lbl_forfatter.grid(column=0, row=1)
             en_forfatter = ttk.Entry(dlg)
             en_forfatter.grid(column=1, row=1)
             en_forfatter.delete(0, tk.END)
             en_forfatter.insert(0, b.forfatter)
 
-            lbl_aarstal = ttk.Label(dlg, text='Årstal')
-            lbl_aarstal.grid(column =0, row = 3)
+            lbl_aarstal = ttk.Label(dlg, text="Årstal")
+            lbl_aarstal.grid(column=0, row=3)
             en_aarstal = ttk.Entry(dlg)
             en_aarstal.grid(column=1, row=3)
             en_aarstal.delete(0, tk.END)
             en_aarstal.insert(0, b.aarstal)
 
-            lbl_id = ttk.Label(dlg, text='Id')
-            lbl_id.grid(column =0, row = 4)
+            lbl_id = ttk.Label(dlg, text="Id")
+            lbl_id.grid(column=0, row=4)
             en_id = ttk.Entry(dlg)
             en_id.grid(column=1, row=4)
             en_id.delete(0, tk.END)
@@ -112,11 +123,9 @@ class Book_gui(ttk.Frame):
             en_antal.insert(0, b.antal)
 
             but_annuller = ttk.Button(dlg, text="Annuller", command=close)
-            but_annuller.grid(column=1,row=4)
+            but_annuller.grid(column=1, row=4)
             but_ok = ttk.Button(dlg, text="Gem ændringer", command=change_book)
-            but_ok.grid(column=0,row=4)
-
-
+            but_ok.grid(column=0, row=4)
 
     def build_GUI(self):
         right_frame = ttk.Frame(self)
@@ -124,13 +133,19 @@ class Book_gui(ttk.Frame):
         data_frame = ttk.Frame(right_frame)
         knap_frame = ttk.Frame(self)
 
-        self.edit_button = ttk.Button(knap_frame, text="Rediger bog", command=self.rediger_bog)
+        self.edit_button = ttk.Button(
+            knap_frame, text="Rediger bog", command=self.rediger_bog
+        )
         self.edit_button.pack(side=tk.TOP)
 
         self.del_button = ttk.Button(knap_frame, text="Slet bog", command=self.slet_bog)
         self.del_button.pack(side=tk.TOP)
 
-        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5", "column6"), show='headings')
+        self.db_view = ttk.Treeview(
+            data_frame,
+            column=("column1", "column2", "column3", "column4", "column5", "column6"),
+            show="headings",
+        )
         self.db_view.bind("<ButtonRelease-1>", self.on_book_selected)
         self.db_view.heading("#1", text="Titel")
         self.db_view.heading("#2", text="Forfatter")
@@ -138,24 +153,31 @@ class Book_gui(ttk.Frame):
         self.db_view.heading("#4", text="Rating")
         self.db_view.heading("#5", text="id")
         self.db_view.heading("#6", text="Antal")
-        #Læg mærke til at kolonne 5 ikke bliver vist.
-        #Vi kan stadig finde id på den bog der er valgt,
-        #men brugeren kan ikke se id.
-        self.db_view["displaycolumns"]=("column1", "column2", "column3", "column4", "column5", "column6")
+        # Læg mærke til at kolonne 5 ikke bliver vist.
+        # Vi kan stadig finde id på den bog der er valgt,
+        # men brugeren kan ikke se id.
+        self.db_view["displaycolumns"] = (
+            "column1",
+            "column2",
+            "column3",
+            "column4",
+            "column5",
+            "column6",
+        )
         ysb = ttk.Scrollbar(data_frame, command=self.db_view.yview, orient=tk.VERTICAL)
         self.db_view.configure(yscrollcommand=ysb.set)
-        self.db_view.pack(side = tk.TOP, fill=tk.BOTH)
+        self.db_view.pack(side=tk.TOP, fill=tk.BOTH)
 
-        #Top Frame
+        # Top Frame
         self.can = tk.Canvas(top_frame, width=200, height=200)
         self.can.grid(column=1, row=0, rowspan=2)
 
-        self.lbl_titel = ttk.Label(top_frame, text='Titel')
-        self.lbl_forfatter = ttk.Label(top_frame, text='Forfatter')
-        self.lbl_aarstal = ttk.Label(top_frame, text='Årstal')
-        self.lbl_id = ttk.Label(top_frame, text='Id')
-        self.lbl_rating = ttk.Label(top_frame, text='Rating')
-        self.lbl_antal = ttk.Label(top_frame, text='Antal')
+        self.lbl_titel = ttk.Label(top_frame, text="Titel")
+        self.lbl_forfatter = ttk.Label(top_frame, text="Forfatter")
+        self.lbl_aarstal = ttk.Label(top_frame, text="Årstal")
+        self.lbl_id = ttk.Label(top_frame, text="Id")
+        self.lbl_rating = ttk.Label(top_frame, text="Rating")
+        self.lbl_antal = ttk.Label(top_frame, text="Antal")
         self.lbl_titel.grid(column=0, row=0)
         self.lbl_forfatter.grid(column=0, row=1)
         self.lbl_aarstal.grid(column=0, row=2)
@@ -164,14 +186,15 @@ class Book_gui(ttk.Frame):
         self.lbl_antal.grid(column=0, row=5)
 
         top_frame.pack(side=tk.TOP)
-        data_frame.pack(side = tk.TOP)
-        knap_frame.pack(side = tk.LEFT, fill=tk.Y)
+        data_frame.pack(side=tk.TOP)
+        knap_frame.pack(side=tk.LEFT, fill=tk.Y)
         right_frame.pack(side=tk.RIGHT, fill=tk.Y)
         self.pack()
+
 
 root = tk.Tk()
 root.geometry("1200x600")
 
 app = Book_gui(root)
-app.master.title('Bøger')
+app.master.title("Bøger")
 app.mainloop()

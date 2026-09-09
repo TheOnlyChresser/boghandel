@@ -19,11 +19,11 @@
 
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
-| 1 | Vis bogens forside ved valg | | | | | Todo |
-| 2 | Vis lagerbeholdning | | | | | Todo |
-| 3 | Bekræftelsesdialog ved "Slet bog" | | | | | Todo |
-| 4 | "Søg"-knap til søgning på forfatter | | | | | Todo |
-| 5 | "Tilføj til kurv" og bon-område | | | | | Todo |
+| 1 | Vis bogens forside ved valg | 1 hour | @ | Lasse | @ | Todo |
+| 2 | Vis lagerbeholdning | 1 hour | @ | Chresten | @ | Todo |
+| 3 | Bekræftelsesdialog ved "Slet bog" | 30 min | @ | Niklas | @ | Todo |
+| 4 | "Søg"-knap til søgning på forfatter | 30 min | @ | Niklas | @ | Todo |
+| 5 | "Tilføj til kurv" og bon-område | 1 hour | @ | Jonas | @ | Todo |
 | 6 | Gem køb til regnskab | | | | | Todo |
 
 ## Sprint uge 3

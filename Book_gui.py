@@ -10,6 +10,7 @@ class Book_gui(ttk.Frame):
         ttk.Frame.__init__(self, master)
 
         self.data = Books_data(False)
+        self.kurv_items = []
 
         self.build_GUI()
 
@@ -125,12 +126,38 @@ class Book_gui(ttk.Frame):
             but_annuller = ttk.Button(dlg, text="Annuller", command=close)
             but_annuller.grid(column=1, row=4)
             but_ok = ttk.Button(dlg, text="Gem ændringer", command=change_book)
-            but_ok.grid(column=0, row=4)
+            but_ok.grid(column=0,row=4)
+
+    def tilfoej_til_kurv(self):
+        cur_item = self.db_view.item(self.db_view.focus())['values']
+
+        if len(cur_item) > 0:
+            book = self.data.get_book(cur_item[4])
+            price = book.get_rating() * 50
+            self.kurv_items.append((book.titel, price))
+            self.opdater_bon()
+
+    def opdater_bon(self):
+        self.bon_view.delete(*self.bon_view.get_children())
+        total = 0
+
+        for title, price in self.kurv_items:
+            self.bon_view.insert("", tk.END, values=(title, "{:.2f} kr.".format(price)))
+            total += price
+
+        self.total_label.configure(text="Total: {:.2f} kr.".format(total))
+
+    def gennemfoer_koeb(self):
+        self.kurv_items.clear()
+        self.opdater_bon()
+
+
 
     def build_GUI(self):
         right_frame = ttk.Frame(self)
         top_frame = ttk.Frame(right_frame)
         data_frame = ttk.Frame(right_frame)
+        bon_frame = ttk.LabelFrame(right_frame, text="Bon")
         knap_frame = ttk.Frame(self)
 
         self.edit_button = ttk.Button(
@@ -141,11 +168,10 @@ class Book_gui(ttk.Frame):
         self.del_button = ttk.Button(knap_frame, text="Slet bog", command=self.slet_bog)
         self.del_button.pack(side=tk.TOP)
 
-        self.db_view = ttk.Treeview(
-            data_frame,
-            column=("column1", "column2", "column3", "column4", "column5", "column6"),
-            show="headings",
-        )
+        self.cart_button = ttk.Button(knap_frame, text="Tilføj til kurv", command=self.tilfoej_til_kurv)
+        self.cart_button.pack(side=tk.TOP)
+
+        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5"), show='headings')
         self.db_view.bind("<ButtonRelease-1>", self.on_book_selected)
         self.db_view.heading("#1", text="Titel")
         self.db_view.heading("#2", text="Forfatter")
@@ -185,9 +211,22 @@ class Book_gui(ttk.Frame):
         self.lbl_rating.grid(column=0, row=4)
         self.lbl_antal.grid(column=0, row=5)
 
+        self.bon_view = ttk.Treeview(bon_frame, columns=("title", "price"), show="headings", height=8)
+        self.bon_view.heading("title", text="Titel")
+        self.bon_view.heading("price", text="Pris")
+        self.bon_view.column("title", width=350)
+        self.bon_view.column("price", width=100, anchor=tk.E)
+        self.bon_view.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+        self.total_label = ttk.Label(bon_frame, text="Total: 0.00 kr.")
+        self.total_label.pack(side=tk.LEFT, padx=5, pady=5)
+        self.buy_button = ttk.Button(bon_frame, text="Køb", command=self.gennemfoer_koeb)
+        self.buy_button.pack(side=tk.RIGHT, padx=5, pady=5)
+
         top_frame.pack(side=tk.TOP)
-        data_frame.pack(side=tk.TOP)
-        knap_frame.pack(side=tk.LEFT, fill=tk.Y)
+        data_frame.pack(side = tk.TOP)
+        bon_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, pady=10)
+        knap_frame.pack(side = tk.LEFT, fill=tk.Y)
         right_frame.pack(side=tk.RIGHT, fill=tk.Y)
         self.pack()
 

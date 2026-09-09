@@ -5,6 +5,7 @@
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
 | 1 | Updater root.geomerty til 1200x600 | 5 min | the GUI ran with the new geomerty | Niklas | 5 min | Done |
+<<<<<<< Updated upstream:SPRINT.md
 | 2 | tilføj en 5'de kollone, id, til tabellen | 15 min | kørte programmet og id-kolonen var der | Niklas | 2 min | Done |
 | 3 | Vis alle oplysninger om den valgte bog | | | | | Todo |
 | 4 | Årstal vises som helt tal | 15 min | kørte programmet og årstalene stog uden decimaltal | Niklas | 10 min | Done |
@@ -14,6 +15,11 @@
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
 | 1 | Afrund Rating kollonen til 2 decimaler | 10 min | kørte programmet og rating kollonen har 2 decimaler | Niklas | 15 min | Done |
+=======
+| 2 | tilføj en 5'de kollone, id, til tabellen | | | | | in progress |
+| 3 | Vis alle oplysninger om den valgte bog |30 min | |Lasse |20 min | Todo |
+| 4 | Årstal vises som helt tal | | | | | Todo |
+>>>>>>> Stashed changes:sprint.md
 
 ## Sprint uge 2
 

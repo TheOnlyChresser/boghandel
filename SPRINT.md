@@ -6,7 +6,7 @@
 |---|-----------|--------------|------|-------|------|--------|
 | 1 | Updater root.geomerty til 1200x600 | 5 min | the GUI ran with the new geomerty | Niklas | 5 min | Done |
 | 2 | tilføj en 5'de kollone, id, til tabellen | 15 min | kørte programmet og id-kolonen var der | Niklas | 2 min | Done |
-| 3 | Vis alle oplysninger om den valgte bog |30 min |virker |Lasse |30 min | Todo |
+| 3 | Vis alle oplysninger om den valgte bog |30 min |virker |Lasse |30 min | Done |
 | 4 | Årstal vises som helt tal | 15 min | kørte programmet og årstalene stog uden decimaltal | Niklas | 10 min | Done |
 
 ### EXTRA
@@ -19,17 +19,19 @@
 
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
-| 5 | Vis bogens forside ved valg | | | | | Todo |
-| 6 | Vis lagerbeholdning | | | | | Todo |
-| 7 | Bekræftelsesdialog ved "Slet bog" | | | | | Todo |
+| 1 | Vis bogens forside ved valg | | | | | Todo |
+| 2 | Vis lagerbeholdning | | | | | Todo |
+| 3 | Bekræftelsesdialog ved "Slet bog" | | | | | Todo |
+| 4 | "Søg"-knap til søgning på forfatter | | | | | Todo |
+| 5 | "Tilføj til kurv" og bon-område | | | | | Todo |
+| 6 | Gem køb til regnskab | | | | | Todo |
 
 ## Sprint uge 3
 
 | # | Userstory | TimeEstimate | Test | Owner | Time | Status |
 |---|-----------|--------------|------|-------|------|--------|
-| 8 | "Søg"-knap til søgning på forfatter | | | | | Todo |
-| 9 | "Tilføj til kurv" og bon-område | | | | | Todo |
-| 10 | Gem køb til regnskab | | | | | Todo |
+| 1 | To be added | | | | | Todo |
+
 
 ## Sprint uge 4
 

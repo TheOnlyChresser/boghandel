@@ -26,12 +26,15 @@ class Book_gui(ttk.Frame):
 
             self.lbl_titel.configure(text="Titel: {}".format(b.titel))
             self.lbl_forfatter.configure(text="Forfatter: {}".format(b.forfatter))
-
+            self.lbl_aarstal.configure(text="Årstal: {}".format(b.aarstal))
+            self.lbl_id.configure(text="Id: {}".format(b.id))
+            self.lbl_rating.configure(text="Rating: {}".format(b.get_rating()))
+            
             self.can.delete("all")
             print(b.ratings[0]/sum(b.ratings))
 
             self.can.create_rectangle(10,190,30,190-200*(b.ratings[0]/sum(b.ratings)))
-
+            #laver en random ass box
 
     def slet_bog(self):
         curItem = self.db_view.item(self.db_view.focus())['values']
@@ -41,6 +44,7 @@ class Book_gui(ttk.Frame):
             b.titel = curItem[0]
             b.forfatter = curItem[1]
             b.aarstal = curItem[2]
+
             b.id = int(curItem[4])
 
             self.data.slet_bog(b)
@@ -51,6 +55,8 @@ class Book_gui(ttk.Frame):
         def change_book():
             b.titel = en_titel.get()
             b.forfatter = en_forfatter.get()
+            b.aarstal = en_aarstal.get()
+            b.id = int(en_id.get())
             self.data.update_book(b)
             b.give_rating(sc_rating.scale.get())
             self.opdater_tabel()
@@ -82,16 +88,24 @@ class Book_gui(ttk.Frame):
             en_forfatter.delete(0, tk.END)
             en_forfatter.insert(0, b.forfatter)
 
-            lbl_rating = ttk.Label(dlg, text='Rating')
-            lbl_rating.grid(column =0, row = 2)
-            sc_rating = ttk.LabeledScale(dlg, from_ = 0, to = 5)
-            sc_rating.value = b.get_rating()
-            sc_rating.grid(column=1, row=2)
+            lbl_aarstal = ttk.Label(dlg, text='Årstal')
+            lbl_aarstal.grid(column =0, row = 3)
+            en_aarstal = ttk.Entry(dlg)
+            en_aarstal.grid(column=1, row=3)
+            en_aarstal.delete(0, tk.END)
+            en_aarstal.insert(0, b.aarstal)
+
+            lbl_id = ttk.Label(dlg, text='Id')
+            lbl_id.grid(column =0, row = 4)
+            en_id = ttk.Entry(dlg)
+            en_id.grid(column=1, row=4)
+            en_id.delete(0, tk.END)
+            en_id.insert(0, b.id)
 
             but_annuller = ttk.Button(dlg, text="Annuller", command=close)
-            but_annuller.grid(column=1,row=3)
+            but_annuller.grid(column=1,row=4)
             but_ok = ttk.Button(dlg, text="Gem ændringer", command=change_book)
-            but_ok.grid(column=0,row=3)
+            but_ok.grid(column=0,row=4)
 
 
 
@@ -128,8 +142,14 @@ class Book_gui(ttk.Frame):
 
         self.lbl_titel = ttk.Label(top_frame, text='Titel')
         self.lbl_forfatter = ttk.Label(top_frame, text='Forfatter')
+        self.lbl_aarstal = ttk.Label(top_frame, text='Årstal')
+        self.lbl_id = ttk.Label(top_frame, text='Id')
+        self.lbl_rating = ttk.Label(top_frame, text='Rating')
         self.lbl_titel.grid(column=0, row=0)
         self.lbl_forfatter.grid(column=0, row=1)
+        self.lbl_aarstal.grid(column=0, row=2)
+        self.lbl_id.grid(column=0, row=3)
+        self.lbl_rating.grid(column=0, row=4)
 
         top_frame.pack(side=tk.TOP)
         data_frame.pack(side = tk.TOP)

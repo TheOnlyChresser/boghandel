@@ -38,7 +38,7 @@ class Book_gui(ttk.Frame):
             self.lbl_id.configure(text="Id: {}".format(b.id))
             self.lbl_rating.configure(text="Rating: {}".format(b.get_rating()))
             self.lbl_antal.configure(text="Antal: {}".format(b.antal))
-            
+
 
             self.can.delete("all")
             print(b.ratings[0] / sum(b.ratings))
@@ -232,7 +232,7 @@ class Book_gui(ttk.Frame):
 
 
 root = tk.Tk()
-root.geometry("1200x600")
+root.geometry("1200x6000")
 
 app = Book_gui(root)
 app.master.title("Bøger")

@@ -264,7 +264,7 @@ class Book_gui(ttk.Frame):
         self.db_view.pack(side=tk.TOP, fill=tk.BOTH)
 
         # Top Frame
-        self.can = tk.Canvas(top_frame, width=200000000, height=200000000000000)
+        self.can = tk.Canvas(top_frame, width=2, height=2)
         self.can.grid(column=1, row=0, rowspan=2)
 
         self.lbl_titel = ttk.Label(top_frame, text="Titel")

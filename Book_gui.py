@@ -195,6 +195,7 @@ class Book_gui(ttk.Frame):
     def gennemfoer_koeb(self):
         if len(self.kurv_items) > 0:
             self.data.gem_koeb(self.kurv_items)
+            messagebox.showinfo("Køb gennemført", "Købet er gemt i data/regnskab.csv")
         self.kurv_items.clear()
         self.opdater_bon()
 

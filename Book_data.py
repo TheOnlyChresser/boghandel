@@ -97,8 +97,10 @@ class Books_data:
         '''
         Gem et køb til regnskabet i data/regnskab.csv
         '''
-        fil_findes = os.path.exists('data/regnskab.csv')
-        outfile = open('data/regnskab.csv', mode='a', newline='', encoding='utf8')
+        # absolut sti, saa filen altid lander i projektets data-mappe
+        regnskab_fil = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'regnskab.csv')
+        fil_findes = os.path.exists(regnskab_fil)
+        outfile = open(regnskab_fil, mode='a', newline='', encoding='utf8')
         writer = csv.writer(outfile)
 
         if not fil_findes:

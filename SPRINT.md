@@ -24,7 +24,7 @@
 | 3 | Bekræftelsesdialog ved "Slet bog" | 30 min | @ | Niklas | @ | Todo |
 | 4 | "Søg"-knap til søgning på forfatter | 30 min | trykkede på slet knappen og en pop-up boks frem og når jeg trykkede yes belv bogen slettet og når jeg trykkede no blev den ikke | Niklas | 20 min | Todo |
 | 5 | "Tilføj til kurv" og bon-område | 1 hour | @ | Jonas | @ | Todo |
-| 6 | Gem køb til regnskab | | | | | Todo |
+| 6 | Gem køb til regnskab | | | | | Undervejs her! arbejdes på! Wohoooooo |
 
 ## Sprint uge 3
 

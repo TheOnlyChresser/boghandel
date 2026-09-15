@@ -148,6 +148,8 @@ class Book_gui(ttk.Frame):
         self.total_label.configure(text="Total: {:.2f} kr.".format(total))
 
     def gennemfoer_koeb(self):
+        if len(self.kurv_items) > 0:
+            self.data.gem_koeb(self.kurv_items)
         self.kurv_items.clear()
         self.opdater_bon()
 
@@ -171,7 +173,7 @@ class Book_gui(ttk.Frame):
         self.cart_button = ttk.Button(knap_frame, text="Tilføj til kurv", command=self.tilfoej_til_kurv)
         self.cart_button.pack(side=tk.TOP)
 
-        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5"), show='headings')
+        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5", "column6"), show='headings')
         self.db_view.bind("<ButtonRelease-1>", self.on_book_selected)
         self.db_view.heading("#1", text="Titel")
         self.db_view.heading("#2", text="Forfatter")

@@ -1,5 +1,7 @@
 import csv
 import math
+import os
+from datetime import datetime
 
 def Truncate(number, decimal):
     faktor = 10 ** decimal
@@ -90,6 +92,22 @@ class Books_data:
             if b.id == id:
                 book = b
         return book
+
+    def gem_koeb(self, kurv_items):
+        '''
+        Gem et køb til regnskabet i data/regnskab.csv
+        '''
+        fil_findes = os.path.exists('data/regnskab.csv')
+        outfile = open('data/regnskab.csv', mode='a', newline='', encoding='utf8')
+        writer = csv.writer(outfile)
+
+        if not fil_findes:
+            writer.writerow(["dato", "titel", "pris"])
+
+        dato = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        for titel, pris in kurv_items:
+            writer.writerow([dato, titel, "{:.2f}".format(pris)])
+        outfile.close()
 
     def update_book(self, b):
         '''

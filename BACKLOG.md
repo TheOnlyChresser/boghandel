@@ -83,6 +83,9 @@ Lav en knap "Tilføj til kurv", som simulerer at en kunde vil købe et eksemplar
 
 Gem et køb, så man kan lave et regnskab for salget i boghandlen. Skal som minimum indeholde dato og tid for hvert køb, samt beløbet.
 
+## 11. Fjern forstyrrende rektangel
+Rektanglen forstyrrer brugeren, når man skal se på skærmen. Brugeren ønsker, at rektanglen fjernes.
+
 ---
 
 ## Noter fra opgaven

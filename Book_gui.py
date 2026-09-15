@@ -39,7 +39,6 @@ class Book_gui(ttk.Frame):
             self.lbl_rating.configure(text="Rating: {}".format(b.get_rating()))
             self.lbl_antal.configure(text="Antal: {}".format(b.antal))
 
-
             self.can.delete("all")
             print(b.ratings[0] / sum(b.ratings))
 
@@ -63,6 +62,52 @@ class Book_gui(ttk.Frame):
 
             self.data.slet_bog(b)
             self.opdater_tabel()
+
+    def søg_forfatter(self):
+        parent = self.winfo_toplevel()
+        popup = tk.Toplevel(parent)
+        popup.title("Search")
+        popup.geometry("300x150")
+
+        popup.transient(parent)
+
+        lbl = tk.Label(popup, text="Enter search term:")
+        lbl.pack(pady=5)
+
+        entry = tk.Entry(popup, width=25, font=("Arial", 11))
+        entry.pack(pady=5)
+
+        def run_search(event=None):
+            query = entry.get().strip().casefold()
+            if not query:
+                messagebox.showwarning("Warning", "søg efter forfatter", parent=popup)
+                return
+
+            results = [
+                f"{book.titel} — {book.forfatter}"
+                for book in self.data.books
+                if query in book.forfatter.casefold()
+            ]
+
+            if results:
+                messagebox.showinfo(
+                    "Resultat fundet", f"fundet: {', '.join(results)}", parent=popup
+                )
+                popup.destroy()
+            else:
+                messagebox.showerror(
+                    "No Match", "No items found matching that term.", parent=popup
+                )
+
+        entry.bind("<Return>", run_search)
+        popup.bind("<Escape>", lambda event: popup.destroy())
+
+        btn = tk.Button(popup, text="Search", command=run_search)
+        btn.pack(pady=5)
+
+        popup.wait_visibility()
+        popup.grab_set()
+        entry.focus_set()
 
     def rediger_bog(self):
         def change_book():
@@ -116,8 +161,8 @@ class Book_gui(ttk.Frame):
             en_id.delete(0, tk.END)
             en_id.insert(0, b.id)
 
-            lbl_antal = ttk.Label(dlg, text='Antal')
-            lbl_antal.grid(column =0, row = 5)
+            lbl_antal = ttk.Label(dlg, text="Antal")
+            lbl_antal.grid(column=0, row=5)
             en_antal = ttk.Entry(dlg)
             en_antal.grid(column=1, row=5)
             en_antal.delete(0, tk.END)
@@ -126,10 +171,10 @@ class Book_gui(ttk.Frame):
             but_annuller = ttk.Button(dlg, text="Annuller", command=close)
             but_annuller.grid(column=1, row=4)
             but_ok = ttk.Button(dlg, text="Gem ændringer", command=change_book)
-            but_ok.grid(column=0,row=4)
+            but_ok.grid(column=0, row=4)
 
     def tilfoej_til_kurv(self):
-        cur_item = self.db_view.item(self.db_view.focus())['values']
+        cur_item = self.db_view.item(self.db_view.focus())["values"]
 
         if len(cur_item) > 0:
             book = self.data.get_book(cur_item[4])
@@ -151,8 +196,6 @@ class Book_gui(ttk.Frame):
         self.kurv_items.clear()
         self.opdater_bon()
 
-
-
     def build_GUI(self):
         right_frame = ttk.Frame(self)
         top_frame = ttk.Frame(right_frame)
@@ -168,10 +211,21 @@ class Book_gui(ttk.Frame):
         self.del_button = ttk.Button(knap_frame, text="Slet bog", command=self.slet_bog)
         self.del_button.pack(side=tk.TOP)
 
-        self.cart_button = ttk.Button(knap_frame, text="Tilføj til kurv", command=self.tilfoej_til_kurv)
+        self.cart_button = ttk.Button(
+            knap_frame, text="Tilføj til kurv", command=self.tilfoej_til_kurv
+        )
         self.cart_button.pack(side=tk.TOP)
 
-        self.db_view = ttk.Treeview(data_frame, column=("column1", "column2", "column3", "column4", "column5"), show='headings')
+        self.search_button = ttk.Button(
+            knap_frame, text="søg forfatter", command=self.søg_forfatter
+        )
+        self.search_button.pack(side=tk.TOP)
+
+        self.db_view = ttk.Treeview(
+            data_frame,
+            column=("column1", "column2", "column3", "column4", "column5", "column6"),
+            show="headings",
+        )
         self.db_view.bind("<ButtonRelease-1>", self.on_book_selected)
         self.db_view.heading("#1", text="Titel")
         self.db_view.heading("#2", text="Forfatter")
@@ -211,7 +265,9 @@ class Book_gui(ttk.Frame):
         self.lbl_rating.grid(column=0, row=4)
         self.lbl_antal.grid(column=0, row=5)
 
-        self.bon_view = ttk.Treeview(bon_frame, columns=("title", "price"), show="headings", height=8)
+        self.bon_view = ttk.Treeview(
+            bon_frame, columns=("title", "price"), show="headings", height=8
+        )
         self.bon_view.heading("title", text="Titel")
         self.bon_view.heading("price", text="Pris")
         self.bon_view.column("title", width=350)
@@ -220,13 +276,15 @@ class Book_gui(ttk.Frame):
 
         self.total_label = ttk.Label(bon_frame, text="Total: 0.00 kr.")
         self.total_label.pack(side=tk.LEFT, padx=5, pady=5)
-        self.buy_button = ttk.Button(bon_frame, text="Køb", command=self.gennemfoer_koeb)
+        self.buy_button = ttk.Button(
+            bon_frame, text="Køb", command=self.gennemfoer_koeb
+        )
         self.buy_button.pack(side=tk.RIGHT, padx=5, pady=5)
 
         top_frame.pack(side=tk.TOP)
-        data_frame.pack(side = tk.TOP)
+        data_frame.pack(side=tk.TOP)
         bon_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, pady=10)
-        knap_frame.pack(side = tk.LEFT, fill=tk.Y)
+        knap_frame.pack(side=tk.LEFT, fill=tk.Y)
         right_frame.pack(side=tk.RIGHT, fill=tk.Y)
         self.pack()
 

@@ -89,8 +89,11 @@ Rektanglen forstyrrer brugeren, når man skal se på skærmen. Brugeren ønsker,
 ## 12. Forbedr søgning
 Lige nu kan man kun søge på forfatter. Brugeren ønsker at kunne søge på både forfatter og titel. Dvs. hvis man skriver "Tolkien" eller "Hobbit", skal bogen vises. Samtidig ønsker brugeren at søgningen skal være i tabel form og ikke i en kæmpe liste, som crasher deres PC. 
 
-## 13. Migrer Next.js
+## 13. Migrer til Next.js
 Brugeren ønsker ikke længere Python, men vil gerne have en webapplikation i Next.js. Dvs. lav en ny version af boghandlen i Next.js, som kan køre i en browser. Så brugeren kan tilgå boghandlen fra en hvilken som helst computer, tablet eller mobiltelefon.
+
+## Sæt bøger i rækkefølge ud fra cover
+Brugeren ønsker at Lasse laver unødigt arbejde. Derfor skal bøgerne sættes i rækkefølge ud fra deres cover, så man kan se, hvilken bog der er hvilken. Dvs. når man trykker på en bog, skal den vises i et nyt vindue med dens cover og oplysninger.
 
 ---
 

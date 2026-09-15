@@ -86,6 +86,12 @@ Gem et køb, så man kan lave et regnskab for salget i boghandlen. Skal som mini
 ## 11. Fjern forstyrrende rektangel
 Rektanglen forstyrrer brugeren, når man skal se på skærmen. Brugeren ønsker, at rektanglen fjernes.
 
+## 12. Forbedr søgning
+Lige nu kan man kun søge på forfatter. Brugeren ønsker at kunne søge på både forfatter og titel. Dvs. hvis man skriver "Tolkien" eller "Hobbit", skal bogen vises. Samtidig ønsker brugeren at søgningen skal være i tabel form og ikke i en kæmpe liste, som crasher deres PC. 
+
+## 13. Migrer Next.js
+Brugeren ønsker ikke længere Python, men vil gerne have en webapplikation i Next.js. Dvs. lav en ny version af boghandlen i Next.js, som kan køre i en browser. Så brugeren kan tilgå boghandlen fra en hvilken som helst computer, tablet eller mobiltelefon.
+
 ---
 
 ## Noter fra opgaven

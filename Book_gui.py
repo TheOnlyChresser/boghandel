@@ -1,6 +1,13 @@
+import io
+import ssl
 import tkinter as tk
 import tkinter.ttk as ttk
+import urllib.request
 from tkinter import messagebox
+
+from PIL import Image, ImageTk
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 from Book_data import Book, Books_data
 
@@ -41,6 +48,11 @@ class Book_gui(ttk.Frame):
 
             self.can.delete("all")
             print(b.ratings[0] / sum(b.ratings))
+
+            img = Image.open(io.BytesIO(urllib.request.urlopen(b.url).read()))
+            img.thumbnail((200, 200))
+            self.cover_img = ImageTk.PhotoImage(img)
+            self.can.create_image(100, 100, image=self.cover_img)
 
             self.can.create_rectangle(
                 10, 190, 30, 190 - 200 * (b.ratings[0] / sum(b.ratings))

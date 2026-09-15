@@ -17,6 +17,7 @@ class Book:
         self.ratings = [0,0,0,0,0]
         self.id = -1
         self.antal = 0
+        self.url = ""
     def get_rating(self):
         r = 0
 
@@ -59,6 +60,7 @@ class Books_data:
                 b.forfatter = book["authors"]
                 b.id = int(book['book_id'])
                 b.antal = int(book["books_count"])
+                b.url = book["image_url"]
             except:
                 print(book)
 
@@ -121,3 +123,4 @@ class Books_data:
                 book.titel = b.titel
                 book.aarstal = b.aarstal
                 book.antal = b.antal
+                book.url = b.url

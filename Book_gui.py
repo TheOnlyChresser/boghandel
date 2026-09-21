@@ -54,10 +54,6 @@ class Book_gui(ttk.Frame):
             self.cover_img = ImageTk.PhotoImage(img)
             self.can.create_image(100, 100, image=self.cover_img)
 
-            self.can.create_rectangle(
-                10, 190, 30, 190 - 200 * (b.ratings[0] / sum(b.ratings))
-            )
-            # laver en random ass box
 
     def slet_bog(self):
         curItem = self.db_view.item(self.db_view.focus())["values"]

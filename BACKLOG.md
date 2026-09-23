@@ -96,7 +96,9 @@ Brugeren ønsker at Lasse laver unødigt arbejde. Derfor skal bøgerne sættes i
 Virksomheden ønsker at man kan donere til boghandlen. Lav en "Doner"-knap, som åbner et nyt vindue med en formular, hvor man kan indtaste navn, e-mail og beløb. Når man trykker på "Doner", skal oplysningerne gemmes i en fil `donationer.csv` med kolonnerne: navn, e-mail, beløb og dato.
 
 ## 15. Platform for medarbejdere
-Medarbejderne ønsker at kunne tilgå en platform, hvor de kan tilføje bøger og slette bøger.
+Medarbejderne ønsker at kunne tilgå en platform, hvor de kan tilføje bøger og slette bøger.esø
+
+## 16. 
 
 ---
 

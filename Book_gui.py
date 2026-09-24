@@ -54,7 +54,10 @@ class Book_gui(ttk.Frame):
             self.cover_img = ImageTk.PhotoImage(img)
             self.can.create_image(100, 100, image=self.cover_img)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 335f988c8c7121e0f20bbeb3968806a1d787b441
     def slet_bog(self):
         curItem = self.db_view.item(self.db_view.focus())["values"]
 
@@ -206,6 +209,27 @@ class Book_gui(ttk.Frame):
         self.kurv_items.clear()
         self.opdater_bon()
 
+    def doner_penge(self):
+        parent = self.winfo_toplevel()
+        popup = tk.Toplevel(parent)
+        popup.title("Doner")
+        popup.geometry("300x150")
+
+        popup.transient(parent)
+
+        lbl = tk.Label(popup, text="Indtast beløb:")
+        lbl.pack(pady=5)
+
+        entry = tk.Entry(popup, width=25, font=("Arial", 11))
+        entry.pack(pady=5)
+
+        def run_donation(event=None):
+            amount = entry.get().strip()
+            popup.destroy()
+
+        btn = tk.Button(popup, text="Doner", command=run_donation)
+        btn.pack(pady=5)
+
     def build_GUI(self):
         right_frame = ttk.Frame(self)
         top_frame = ttk.Frame(right_frame)
@@ -230,6 +254,9 @@ class Book_gui(ttk.Frame):
             knap_frame, text="søg forfatter", command=self.søg_forfatter
         )
         self.search_button.pack(side=tk.TOP)
+
+        self.doner_button = ttk.Button(knap_frame, text="Doner", command=self.doner_penge)
+        self.doner_button.pack(side=tk.TOP)
 
         self.db_view = ttk.Treeview(
             data_frame,

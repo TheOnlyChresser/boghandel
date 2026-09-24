@@ -125,7 +125,6 @@ class Book_gui(ttk.Frame):
             b.id = int(en_id.get())
             b.antal = int(en_antal.get())
             self.data.update_book(b)
-            b.give_rating(sc_rating.scale.get())
             self.opdater_tabel()
             dlg.destroy()
             dlg.update()
